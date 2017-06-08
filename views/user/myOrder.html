@@ -1,0 +1,178 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>我的订单</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <link href="../../css/mui.min.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="../../css/icons-extra.css" />
+    <script src="../../js/vue.js" type="text/javascript" charset="utf-8"></script>
+    <style>
+        body,
+        html {
+            padding: 0;
+            margin: 0;
+            height: 100%;
+            background-color: #f0eff4;
+        }
+        
+        .immersed-status-bar {
+            width: 100%;
+            height: 20px;
+            background-color: rgb(255, 228, 0);
+        }
+        
+        .mui-bar.mui-bar-nav {
+            top: 20px;
+            box-shadow: 0 2px 5px -1px #ccc;
+            background-color: rgb(255, 228, 0);
+        }
+        
+        .mui-action-back {
+            color: black;
+        }
+        
+        .mui-card {
+            margin-top: 54px;
+        }
+        
+        .header {
+            width: 100%;
+            display: flex;
+            justify-content: flex-end;
+            font-size: 14px;
+            color: #fae112;
+        }
+        
+        .cancel {
+            color: #9b9b9b;
+        }
+        
+        .mui-card-content-inner {
+            font-size: 14px;
+            color: #8f8f94;
+        }
+        
+        .footer {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .rate-btn {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f8a523;
+            color: #f3f5f4;
+            width: 68px;
+            height: 26px;
+            border-radius: 2px;
+        }
+        
+        .price {
+            font-size: 30px;
+            color: #f8a523;
+        }
+        
+        .title-title {
+            font-size: 17px;
+            font-weight: 500;
+        }
+        
+        .check-cmp {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            border: 1px solid rgb(255, 228, 0);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .check-cmp-item {
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background-color: rgb(255, 228, 0);
+        }
+        
+        .mui-card-content-inner {
+            font-size: 14px;
+            color: #8f8f94;
+        }
+        
+        .btn-group {
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+        }
+        
+        .btn {
+            height: 40px;
+            border-radius: 5px;
+            width: 45vw;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font: 16px;
+            color: #fcfdf8;
+            background-color: #f5a623;
+            margin-top: 15px;
+        }
+        
+        .btn.cancel {
+            background-color: #B5B5B5;
+        }
+        
+        .btn:active {
+            background-color: #d59f45;
+        }
+        
+        .btn.cancel:active {
+            background-color: #8f8f94;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="vue-body">
+        <template>
+            <loading :show="loadingShow"></loading>
+            <div class="immersed-status-bar"></div>
+            <header class="mui-bar mui-bar-nav" style="position: absolute;">
+                <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+                <h1 class="mui-title">我的订单</h1>
+            </header>
+            <div style="width: 94%;min-height: 170px;" class="mui-card">
+                <div class="mui-card-header">
+                    <div class="header">
+                        {{tradeInfo.tradestatus=='finish'?'已支付':'未支付'}}
+                    </div>
+                </div>
+                <div class="mui-card-content">
+                    <div class="mui-card-content-inner">
+                        <div>
+                            <p>班型：{{tradeInfo.classtype}}</p>
+                            <p>驾校：{{tradeInfo.schoolname}}</p>
+                            <p>订单编号：{{tradeInfo.orderid}}</p>
+                            <p>创建时间：{{tradeInfo.tradetime}}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="mui-card-footer">
+                    <div class="price">¥{{tradeInfo.tradeamount}}</div>
+                </div>
+            </div>
+            <div class="btn-group" v-if="tradeInfo.tradestatus&&tradeInfo.tradestatus!='finish'">
+                <div @tap="cancelOrder" class="btn cancel">取消订单</div>
+                <div @tap="pay" class="btn">付款</div>
+            </div>
+        </template>
+    </div>
+    <script src="../../js/mui.min.js"></script>
+    <script type="text/javascript" src="../../js/dist/user/myOrder.js"></script>
+</body>
+
+</html>

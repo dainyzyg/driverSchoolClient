@@ -1,0 +1,277 @@
+body,
+html {
+	padding: 0;
+	margin: 0;
+	height: 100%;
+	background-color: white;
+	overflow: auto;
+}
+
+.immersed-status-bar {
+	width: 100%;
+	height: 20px;
+	background-color: rgb(255, 228, 0);
+}
+
+.vue-body {
+	position: fixed;
+	top: 20px;
+	left: 0;
+	right: 0;
+	bottom: 0;
+}
+
+.content {
+	position: fixed;
+	top: 64px;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	overflow: hidden;
+}
+
+.mui-bar.mui-bar-nav {
+	background-color: rgb(255, 228, 0);
+}
+
+.mui-action-back {
+	color: black;
+}
+
+.mui-icon.mui-icon-star.mui-icon-star-filled {
+	color: rgb(255, 228, 0);
+	font-size: 14px;
+}
+
+.mui-icon.mui-icon-star {
+	font-size: 14px;
+}
+
+.mui-ellipsis {
+	font-size: 12px;
+}
+
+.mui-h6.mui-ellipsis.distance {
+	color: #000000;
+}
+
+h6,
+p {
+	margin-top: 0px;
+	margin-bottom: 5px;
+}
+
+.single-line,
+.long-single-line {
+	height: 1px;
+	background-color: #c8c7cc;
+}
+
+.single-line {
+	width: 90%;
+	align-self: center;
+}
+
+.coach-info {
+	display: flex;
+	padding: 5px 15px;
+	align-items: center;
+}
+
+.change-coach {
+	color: #8f8f94;
+	font-size: 14px;
+	text-align: center;
+	width: 100%;
+	padding: 5px;
+	border-bottom: 5px solid #e3e3e3;
+}
+
+.subject-type {
+	border: 1px solid #ffe400;
+	font-size: 14px;
+	width: auto;
+	align-self: center;
+	padding: 2px 30px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+.footer {
+	width: 90%;
+	align-self: center;
+	flex: 0 0 50px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-around;
+}
+
+.mui-btn.mui-btn-block.confirm {
+	background-color: rgb(255, 228, 0);
+	height: 40px;
+	line-height: 10px;
+	margin: 0;
+}
+
+.preorder-info {
+	color: #8f8f94;
+	font-size: 14px;
+	background-color: white;
+	text-align: center;
+}
+
+#sliderSegmentedControl {
+	flex: 0 0 45px;
+	align-self: stretch;
+	border-top: 1px solid #c8c7cc;
+}
+
+#slider {
+	flex: 1;
+	align-self: stretch;
+	display: flex;
+	background-color: #e3e3e3;
+	flex-direction: column;
+}
+
+.mui-segmented-control.mui-segmented-control-inverted .mui-control-item.mui-active {
+	background-color: rgb(255, 228, 0);
+	color: black;
+	border-bottom: 2px solid rgb(255, 228, 0);
+}
+
+.page {
+	flex-direction: column;
+	align-items: stretch;
+	display: flex;
+}
+
+.lesson {
+	flex: 1;
+	display: flex;
+	justify-content: space-between;
+	padding-top: 4%;
+	padding-left: 4%;
+	padding-right: 4%;
+	max-height: 120px;
+}
+
+.selectInfo {
+	flex: 1.2;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 14px;
+	color: #8f8f94;
+}
+
+.lesson-item {
+	flex: 0 0 48%;
+	background-color: white;
+	display: flex;
+	position: relative;
+	overflow: hidden;
+	border-radius: 3px;
+}
+
+.lesson-item.full .lesson-item-type {
+	background-color: red;
+}
+
+.lesson-item.enabled .lesson-item-type {
+	background-color: #53ff31;
+}
+
+.lesson-item.hasbooking .lesson-item-type {
+	background-color: rgb(255, 228, 0);
+}
+
+.lesson-item.disabled {
+	background-color: #cccccc;
+}
+
+.lesson-item.selected {
+	background-color: #ffe400;
+}
+
+.lesson-item.selected .lesson-item-type {
+	background-color: transparent;
+}
+
+.lesson-item-select {
+	flex: 1;
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+}
+
+.lesson-item-info {
+	flex: 4;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.lesson-item-info p {
+	color: black;
+}
+
+.lesson-item-select-icon {
+	border: 1px solid #cccccc;
+	width: 20px;
+	height: 20px;
+	border-radius: 50%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.lesson-item.enabled .lesson-item-select-icon {
+	border: 1px solid black;
+}
+
+.lesson-item.selected .lesson-item-select-icon:before {
+	content: '\e472';
+	font-family: Muiicons;
+	font-size: 22px;
+	line-height: 22px;
+}
+
+.lesson-item-type {
+	position: absolute;
+	width: 100px;
+	height: 60px;
+	bottom: -40px;
+	right: -50px;
+	transform: rotate(-30deg)
+}
+
+.mui-icon-contact {
+	color: #8F8F94;
+	font-size: 50px;
+}
+
+.title {
+	background-color: rgb(255, 228, 0);
+	height: 38px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: relative;
+}
+
+.title-title {
+	font-size: 17px;
+	font-weight: 500;
+}
+
+.mui-icon.mui-icon-back {
+	position: absolute;
+	top: 7px;
+	left: 10px;
+}

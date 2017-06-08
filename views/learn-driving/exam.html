@@ -1,0 +1,94 @@
+<!doctype html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>答题</title>
+	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	<link href="../../css/mui.min.css" rel="stylesheet" />
+	<link rel="stylesheet" type="text/css" href="../../css/learn-driving/exam.css" />
+</head>
+
+<body>
+	<div class="immersed-status-bar"></div>
+	<header class="mui-bar mui-bar-nav">
+		<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		<span class="mui-pull-right submit">交卷</span>
+		<h1 class="mui-title">
+			<span>考试</span>
+			<span class="timeLeft"></span>
+		</h1>
+	</header>
+	<div class="content">
+		<div id="progressbar" class="mui-progressbar">
+			<span></span>
+		</div>
+		<div class="pages">
+			<div class="page page1"></div>
+			<div class="page page2"></div>
+			<div class="page page3"></div>
+		</div>
+	</div>
+	<div class="question-menu">
+		<div class="menu-collapse">
+			<span></span>
+			<span class="mui-icon mui-icon-arrowdown"></span>
+			<span></span>
+		</div>
+		<div class="menu-title">
+			<div class="wrong-number">
+				<div class="number-content">0</div>
+				<div class="number-title">错题</div>
+			</div>
+			<div class="right-number">
+				<div class="number-content">0</div>
+				<div class="number-title">对题</div>
+			</div>
+			<div class="nd-number">
+				<div class="number-content">0</div>
+				<div class="number-title">未做</div>
+			</div>
+		</div>
+		<div class="menu-content">
+		</div>
+	</div>
+	<div class="question-result">
+		<!--<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">
+				<span>考试结果</span>
+				<span class="timeLeft"></span>
+			</h1>
+		</header>-->
+		<div class="question-result-title">
+			<div>
+				<a class="mui-action-back mui-icon mui-icon-left-nav"></a>
+			</div>
+			<span>考试结果</span>
+			<div>
+			</div>
+		</div>
+		<div class="question-content">
+			<h3>考试成绩</h3>
+			<div class="question-content-detail">
+				<div>
+					答对:<span class="rights">12</span>
+				</div>
+				<div>
+					答错:<span class="wrongs">12</span>
+				</div>
+				<div>
+					得分:<span class="scores">12</span>
+				</div>
+				<div>
+					用时:<span class="time-used">12:01</span>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="../../js/mui.min.js"></script>
+	<script src="../../js/dist/lib/ddSilder.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript" src="../../js/dist/learn-driving/exam.js"></script>
+</body>
+
+</html>

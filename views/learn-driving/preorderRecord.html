@@ -1,0 +1,267 @@
+<!doctype html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>预约记录</title>
+	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	<link href="../../css/mui.min.css" rel="stylesheet" />
+	<link rel="stylesheet" type="text/css" href="../../css/icons-extra.css" />
+	<style>
+		body,
+		html {
+			padding: 0;
+			margin: 0;
+			height: 100%;
+		}
+		
+		.immersed-status-bar {
+			width: 100%;
+			height: 20px;
+			background-color: rgb(255, 228, 0);
+		}
+		
+		.vue-body {
+			position: fixed;
+			top: 20px;
+			left: 0;
+			right: 0;
+			bottom: 0;
+		}
+		
+		.content {
+			position: fixed;
+			top: 64px;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			overflow: auto;
+			padding-bottom: 44px;
+		}
+		
+		.mui-bar.mui-bar-nav {
+			top: 20px;
+			box-shadow: 0 2px 5px -1px #ccc;
+			background-color: rgb(255, 228, 0);
+		}
+		
+		.mui-action-back {
+			color: black;
+		}
+		
+		.order {
+			padding: 15px 20px;
+			background-color: white;
+		}
+		
+		.pay-select {
+			background-color: white;
+			margin-top: 15px;
+		}
+		
+		.pay-select div {
+			border-bottom: 1px solid #c8c7cc;
+		}
+		
+		.mui-icon-extra-alipay,
+		.mui-icon-weixin {
+			font-size: 35px;
+			color: rgb(255, 228, 0);
+		}
+		
+		.mui-btn.mui-btn-block.confirm {
+			margin-top: 20px;
+			background-color: rgb(255, 228, 0);
+			height: 40px;
+			line-height: 10px;
+			;
+		}
+		
+		.header {
+			width: 100%;
+			display: flex;
+			justify-content: space-between;
+			font-size: 14px;
+			color: #fae112;
+		}
+		
+		.cancel {
+			color: #9b9b9b;
+		}
+		
+		.mui-card-content-inner {
+			font-size: 14px;
+			color: #8f8f94;
+		}
+		
+		.footer {
+			width: 100%;
+			display: flex;
+			justify-content: space-between;
+		}
+		
+		.rate-btn {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			background-color: #f8a523;
+			color: #f3f5f4;
+			width: 68px;
+			height: 26px;
+			border-radius: 2px;
+		}
+		
+		.loading {
+			height: 40px;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+		
+		.title {
+			background-color: rgb(255, 228, 0);
+			height: 38px;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			position: relative;
+		}
+		
+		.mui-icon.mui-icon-back {
+			position: absolute;
+			top: 7px;
+			left: 10px;
+		}
+		
+		.title-title {
+			font-size: 17px;
+			font-weight: 500;
+		}
+		
+		.check-cmp {
+			width: 20px;
+			height: 20px;
+			border-radius: 50%;
+			border: 1px solid rgb(255, 228, 0);
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+		
+		.check-cmp-item {
+			width: 10px;
+			height: 10px;
+			border-radius: 50%;
+			background-color: rgb(255, 228, 0);
+		}
+		
+		.mui-card-content-inner {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+		}
+		
+		.price {
+			font-size: 30px;
+			color: #f8a523;
+		}
+		
+		.pay {
+			padding-left: 10px;
+			position: fixed;
+			bottom: 0px;
+			height: 44px;
+			width: 100%;
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			background-color: white;
+			border-top: 1px solid #c8c7cc;
+		}
+		
+		.pay-btn {
+			background-color: #f8a523;
+			width: 100px;
+			height: 44px;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			color: white;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="immersed-status-bar"></div>
+	<div class="vue-body">
+		<rate-coach v-model="showRate" :props="rateInfo" @ratesuccess="rateSuccess"></rate-coach>
+		<div class="title">
+			<span @tap="back" class="mui-icon mui-icon-back"></span>
+			<div class="title-title">预约记录</div>
+		</div>
+		<template v-if="loading">
+			<div class="loading">
+				<span class="mui-spinner "></span>正在加载...
+			</div>
+		</template>
+		<template v-else>
+			<div class="content">
+				<div v-for="item in preorderList" class="mui-card">
+					<div class="mui-card-header">
+						<div class="header" :class="{cancel:getStatus(item)=='已取消'}">
+							<div>
+								<div v-if="getStatus(item)=='待付款'" class="check-cmp" @tap="item.checked=!item.checked">
+									<div v-if="item.checked" class="check-cmp-item"></div>
+								</div>
+							</div>
+							{{getStatus(item)}}
+						</div>
+					</div>
+					<div class="mui-card-content">
+						<div class="mui-card-content-inner">
+							<div>
+								<p>{{formatData(item.date).date}} | {{formatData(item.date).week}}</p>
+								{{item.course}} {{item.time}}
+							</div>
+							<div v-if="item.price" class="price">¥{{item.price}}</div>
+						</div>
+					</div>
+					<div class="mui-card-footer">
+						<template v-if="getStatus(item)=='已取消'">
+							本次约车已被取消
+						</template>
+						<template v-if="getStatus(item)=='已学完'">
+							<div class="footer">
+								快去给教练评价吧！～
+								<div @tap="rate(item)" v-if="!item.isevaluate" class="rate-btn">马上评价</div>
+							</div>
+						</template>
+						<template v-if="getStatus(item)=='未学完'">
+							您的课程尚未学完，请不要忘记哦！～
+						</template>
+						<template v-if="getStatus(item)=='待付款'">
+							请在十五分钟内完成付款，否则系统会取消预约
+						</template>
+					</div>
+				</div>
+			</div>
+			<div class="pay">
+				<div style="display: flex;">
+					<div style="margin-right: 10px;" class="check-cmp" @tap="toggleSelectAll">
+						<div v-if="selectAll" class="check-cmp-item"></div>
+					</div>
+					全选
+				</div>
+				<div>
+					合计:<span style="color: #f8a523;">¥{{priceTotal}}</span>
+				</div>
+				<div @tap="pay" class="pay-btn">{{btnName}}({{count}})</div>
+			</div>
+		</template>
+	</div>
+	<script src="../../js/vue.js" type="text/javascript"></script>
+	<script src="../../js/mui.min.js"></script>
+	<script type="text/javascript" src="../../js/dist/learn-driving/preorderRecord.js"></script>
+</body>
+
+</html>

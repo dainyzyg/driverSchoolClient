@@ -1,0 +1,61 @@
+body,
+html {
+	padding: 0;
+	margin: 0;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	background-color: white;
+}
+
+.list {
+	flex: 1;
+	overflow: auto;
+}
+
+.join {
+	height: 250px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-around;
+	padding-bottom: 50px;
+}
+
+.join h2 {
+	color: rgb(255, 228, 0);
+}
+
+.join .join-button {
+	background-color: wheat;
+	height: 50px;
+	width: 80%;
+}
+
+.mui-btn.mui-btn-block.confirm {
+	background-color: rgb(255, 228, 0);
+}
+
+h6,
+p {
+	margin-top: 0px;
+	margin-bottom: 5px;
+}
+
+.single-line,
+.long-single-line {
+	height: 1px;
+	background-color: #c8c7cc;
+}
+
+.single-line {
+	margin: 0 20px;
+}
+
+.yellow-font {
+	color: rgb(255, 228, 0);
+}
+
+.list p {
+	margin-bottom: 15px;
+}

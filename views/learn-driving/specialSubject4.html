@@ -1,0 +1,118 @@
+<!doctype html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	<link href="../../css/mui.min.css" rel="stylesheet" />
+	<style type="text/css">
+		#list {
+			/*避免导航边框和列表背景边框重叠，看起来像两条边框似得；*/
+			margin-top: -1px;
+		}
+		
+		.number {
+			margin-left: 10px;
+			color: #737373;
+			font-size: 14px;
+		}
+		
+		.immersed-status-bar {
+			width: 100%;
+			height: 20px;
+			background-color: rgb(255, 228, 0);
+		}
+		
+		.mui-bar.mui-bar-nav {
+			top: 20px;
+			box-shadow: 0 2px 5px -1px #ccc;
+			background-color: rgb(255, 228, 0);
+		}
+		
+		.mui-action-back {
+			color: black;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="immersed-status-bar"></div>
+	<header class="mui-bar mui-bar-nav">
+		<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		<h1 class="mui-title">专项练习</h1>
+	</header>
+	<div class="mui-content">
+		<ul id="list" class="mui-table-view mui-table-view-chevron">
+			<li class="mui-table-view-divider">按题目类型</li>
+			<li class="mui-table-view-cell">
+				<a class="mui-navigate-right" data-path="mapping/danxuan4.json">
+						单选题<span class="number">336</span>
+					</a>
+			</li>
+			<li class="mui-table-view-cell">
+				<a class="mui-navigate-right" data-path="mapping/duoxuan4.json">
+						多选题<span class="number">151</span>
+					</a>
+			</li>
+			<li class="mui-table-view-cell">
+				<a class="mui-navigate-right" data-path="mapping/panduan4.json">
+						判断题<span class="number">605</span>
+					</a>
+			</li>
+			<li class="mui-table-view-divider">按章节</li>
+			<li class="mui-table-view-cell">
+				<a class="mui-navigate-right" data-path="mapping/zhuanxiang4/weifa.json">
+						违法行为综合判断与案例分析<span class="number">40</span>
+					</a>
+			</li>
+			<li class="mui-table-view-cell ">
+				<a class="mui-navigate-right" data-path="mapping/zhuanxiang4/anquan.json">
+						安全行车常识<span class="number">192</span>
+					</a>
+			</li>
+			<li class="mui-table-view-cell">
+				<a class="mui-navigate-right" data-path="mapping/zhuanxiang4/changjian.json">
+						常见交通标志、标线和交通手势辨识<span class="number">269</span>
+					</a>
+			</li>
+			<li class="mui-table-view-cell ">
+				<a class="mui-navigate-right" data-path="mapping/zhuanxiang4/jiashi.json">
+						驾驶职业道德和文明驾驶常识<span class="number">155</span>
+					</a>
+			</li>
+			<li class="mui-table-view-cell ">
+				<a class="mui-navigate-right" data-path="mapping/zhuanxiang4/elie.json">
+						恶劣气候和复杂道路条件下驾驶常识<span class="number">189</span>
+					</a>
+			</li>
+			<li class="mui-table-view-cell">
+				<a class="mui-navigate-right" data-path="mapping/zhuanxiang4/jinji.json">
+						紧急情况下避险常识<span class="number">106</span>
+					</a>
+			</li>
+			<li class="mui-table-view-cell ">
+				<a class="mui-navigate-right" data-path="mapping/zhuanxiang4/jiaotong.json">
+						交通事故救护及常见危化品处置常识<span class="number">41</span>
+					</a>
+			</li>
+		</ul>
+	</div>
+	<script src="../../js/mui.min.js"></script>
+	<script type="text/javascript">
+		mui.init()
+		mui('#list').on('tap', 'a', function () {
+			var mapping = this.getAttribute('data-path')
+			mui.openWindow({
+				url: 'exercise.html?questionsJson=questionsJson4.json&type=4&mapping=' + mapping,
+				show: {
+					autoShow: true, //页面loaded事件发生后自动显示，默认为true
+					aniShow: 'pop-in', //页面显示动画，默认为”slide-in-right“；
+					duration: 300 //页面动画持续时间，Android平台默认100毫秒，iOS平台默认200毫秒；
+				}
+			})
+		})
+	</script>
+</body>
+
+</html>

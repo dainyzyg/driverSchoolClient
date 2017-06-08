@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>Hello MUI</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="blueviolet">
+	<link rel="stylesheet" href="../css/mui.min.css">
+	<link rel="stylesheet" type="text/css" href="../fonts/icon-font/iconfont.css" />
+	<link rel="stylesheet" type="text/css" href="../css/icons-extra.css" />
+	<style>
+		html,
+		body {
+			background-color: #efeff4;
+			/*background-color: rgb(255, 228, 0);*/
+		}
+		
+		.immersed-statusbar {
+			background-color: rgb(255, 228, 0);
+			width: 100vw;
+			height: 50vh;
+		}
+		
+		.mui-bar-tab .mui-tab-item.mui-active {
+			color: #929292;
+		}
+		
+		.mui-bar-tab .mui-tab-item.mui-active1 {
+			color: rgb(255, 228, 0);
+		}
+		
+		.mui-bar {
+			background-color: white;
+		}
+		
+		.icon {
+			width: 24px;
+			height: 24px;
+			margin: auto;
+			background-size: 20px;
+			background-repeat: no-repeat;
+			background-position: bottom;
+		}
+		
+		.join {
+			background-image: url(../images/icon/join.png);
+		}
+		
+		.mui-tab-item.mui-active1 .join {
+			background-image: url(../images/icon/join-s.png);
+		}
+		
+		.learn-driving {
+			background-image: url(../images/icon/learn-driving.png);
+		}
+		
+		.mui-tab-item.mui-active1 .learn-driving {
+			background-image: url(../images/icon/learn-driving-s.png);
+		}
+		
+		.old-driver {
+			background-image: url(../images/icon/old-driver.png);
+		}
+		
+		.mui-tab-item.mui-active1 .old-driver {
+			background-image: url(../images/icon/old-driver-s.png);
+		}
+		
+		.user {
+			background-image: url(../images/icon/user.png);
+		}
+		
+		.mui-tab-item.mui-active1 .user {
+			background-image: url(../images/icon/user-s.png);
+		}
+		
+		.mui-tab-label {
+			font-size: 11px;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="immersed-statusbar">
+	</div>
+	<nav class="mui-bar mui-bar-tab">
+		<a id="defaultTab" class="mui-tab-item mui-active1" href="join/index.html">
+			<div class="icon join"></div>
+			<span class="mui-tab-label">报名</span>
+		</a>
+		<a class="mui-tab-item" href="laosijiURL">
+			<div class="icon old-driver"></div>
+			<span class="mui-tab-label">老司机</span>
+		</a>
+		<a id="learnTab" class="mui-tab-item" href="learn-driving/learn-driving.html">
+			<div class="icon learn-driving"></div>
+			<span class="mui-tab-label">学车</span>
+		</a>
+		<a class="mui-tab-item" href="user/index.html">
+			<div class="icon user"></div>
+			<span class="mui-tab-label">我的</span>
+		</a>
+	</nav>
+	<script type="text/javascript" src="../js/mui.min.js"></script>
+	<script type="text/javascript" src="../js/dist/home.js"></script>
+</body>
+
+</html>

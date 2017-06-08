@@ -1,0 +1,83 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>学车进程</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <link href="../../css/mui.min.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="../../css/icons-extra.css" />
+    <script src="../../js/vue.js" type="text/javascript" charset="utf-8"></script>
+    <style>
+        body,
+        html {
+            padding: 0;
+            margin: 0;
+            height: 100%;
+            background-color: #f0eff4;
+        }
+        
+        .immersed-status-bar {
+            width: 100%;
+            height: 20px;
+            background-color: rgb(255, 228, 0);
+        }
+        
+        .mui-bar.mui-bar-nav {
+            top: 20px;
+            box-shadow: 0 2px 5px -1px #ccc;
+            background-color: rgb(255, 228, 0);
+        }
+        
+        .mui-action-back {
+            color: black;
+        }
+        
+        .my-balance {
+            margin-top: 44px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: white;
+            padding: 20px 0;
+        }
+        
+        .process {
+            background-color: white;
+            margin-top: 10px;
+            text-align: center;
+            line-height: 36px;
+        }
+        
+        .aidie {
+            width: 30vw;
+            position: fixed;
+            bottom: 20px;
+            left: 35vw;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="vue-body">
+
+        <loading :show="loadingShow"></loading>
+        <div class="immersed-status-bar"></div>
+        <header class="mui-bar mui-bar-nav" style="position: absolute;">
+            <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+            <h1 class="mui-title">学车进程</h1>
+        </header>
+        <div class="my-balance">
+            <img src="../../images/user/logo.png" style="width: 50vw;" />
+        </div>
+        <div class="process">
+            目前阶段：<span id="state"></span>
+        </div>
+        <img class="aidie" src="../../images/user/aidie.png" />
+    </div>
+    <script src="../../js/mui.min.js"></script>
+    <script type="text/javascript" src="../../js/dist/user/driveProcess.js"></script>
+</body>
+
+</html>

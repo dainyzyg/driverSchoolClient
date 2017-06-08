@@ -1,0 +1,56 @@
+<!doctype html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	<link href="../../css/mui.min.css" rel="stylesheet" />
+	<link rel="stylesheet" type="text/css" href="../../css/icons-extra.css" />
+	<style>
+		body,
+		html {
+			padding: 0;
+			margin: 0;
+			height: 100vh;
+		}
+		
+		.vue-body {
+			position: fixed;
+			top: 0;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+		
+		.btn {
+			width: 100px;
+			height: 40px;
+			border-radius: 6px;
+			border: 1px solid slategray;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+	</style>
+	<script src="../../js/vue.js" type="text/javascript" charset="utf-8"></script>
+</head>
+
+<body>
+	<div class="vue-body">
+		<div class="btn" @tap="showShare=true">
+			test
+		</div>
+		<share v-model="showShare"></share>
+		<!--<share></share>-->
+	</div>
+</body>
+
+</html>
+<script src="../../js/mui.min.js"></script>
+<script type="text/javascript" src="../../js/iscroll-lite.js"></script>
+<!--<script type="text/javascript" src="../../js/iscroll-lite.js"></script>-->
+<script type="text/javascript" src="../../js/dist/test/vuetest.js"></script>

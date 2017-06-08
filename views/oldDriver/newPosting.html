@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en" class="feedback">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	<title>问题反馈</title>
+	<link rel="stylesheet" type="text/css" href="../../css/mui.min.css" />
+	<link rel="stylesheet" type="text/css" href="../../css/oldDriver/newPosting.css" />
+</head>
+
+<body>
+	<div class="immersed-status-bar"></div>
+	<header class="mui-bar mui-bar-nav">
+		<a style="color: black;" class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		<button id="submit" style="color: black;" class="mui-btn mui-btn-blue mui-btn-link mui-pull-right">发送</button>
+		<h1 class="mui-title">发帖</h1>
+	</header>
+	<div class="mui-content">
+		<div class="mui-content-padded">
+			<div class="mui-inline">论坛版块:</div>
+			<a class="mui-inline" href="#popover">
+				<span id="section">司机头条</span>
+				<span class="mui-icon mui-icon-arrowdown"></span>
+			</a>
+			<!--快捷输入具体内容，开发者可自己替换常用语-->
+			<div id="popover" class="mui-popover">
+				<div class="mui-popover-arrow"></div>
+				<div class="mui-scroll-wrapper">
+					<div class="mui-scroll">
+						<ul class="mui-table-view">
+							<li class="mui-table-view-cell">
+								<a id="sijitoutiao" href="#">司机头条</a>
+							</li>
+							<li class="mui-table-view-cell">
+								<a id="wuwuwu" href="#">污污污</a>
+							</li>
+							<li class="mui-table-view-cell">
+								<a id="duanzishou" href="#">段子手</a>
+							</li>
+							<li class="mui-table-view-cell">
+								<a id="xuechequwen" href="#">学车趣闻</a>
+							</li>
+							<li class="mui-table-view-cell">
+								<a id="laosiji" href="#">老司机</a>
+							</li>
+							<li class="mui-table-view-cell">
+								<a id="kaoqianxuyuan" href="#">考前许愿</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row mui-input-row">
+			<textarea id='question' style="height: 200px;" class="mui-input-clear question" placeholder="写点什么..."></textarea>
+		</div>
+		<p>图片(最多可上传三张)</p>
+		<div id='image-list' class="row image-list"></div>
+		<div style="display: none;">
+			<p>QQ/邮箱</p>
+			<div class="mui-input-row">
+				<input id='contact' type="text" class="mui-input-clear contact" placeholder="(选填,方便我们联系你 )" />
+			</div>
+			<div class="mui-content-padded">
+				<div class="mui-inline">应用评分</div>
+				<div class="icons mui-inline" style="margin-left: 6px;">
+					<i data-index="1" class="mui-icon mui-icon-star"></i>
+					<i data-index="2" class="mui-icon mui-icon-star"></i>
+					<i data-index="3" class="mui-icon mui-icon-star"></i>
+					<i data-index="4" class="mui-icon mui-icon-star"></i>
+					<i data-index="5" class="mui-icon mui-icon-star"></i>
+				</div>
+			</div><br />
+		</div>
+	</div>
+	<script src="../../js/mui.min.js"></script>
+	<script src=" ../../js/dist/oldDriver/newPosting.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		mui.init();
+		mui('.mui-scroll-wrapper').scroll();
+	</script>
+</body>
+
+</html>

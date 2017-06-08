@@ -1,0 +1,59 @@
+body,
+html {
+	padding: 0;
+	margin: 0;
+	height: 100%;
+}
+
+.immersed-status-bar {
+	width: 100%;
+	height: 20px;
+	background-color: rgb(255, 228, 0);
+}
+
+.content {
+	position: fixed;
+	top: 64px;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	overflow: auto;
+}
+
+.mui-bar.mui-bar-nav {
+	top: 20px;
+	box-shadow: 0 2px 5px -1px #ccc;
+	background-color: rgb(255, 228, 0);
+}
+
+.mui-action-back {
+	color: black;
+}
+
+.order {
+	padding: 15px 20px;
+	background-color: white;
+}
+
+.pay-select {
+	background-color: white;
+	margin-top: 15px;
+}
+
+.pay-select div {
+	border-bottom: 1px solid #c8c7cc;
+}
+
+.mui-icon-extra-alipay,
+.mui-icon-weixin {
+	font-size: 35px;
+	color: rgb(255, 228, 0);
+}
+
+.mui-btn.mui-btn-block.confirm {
+	margin-top: 20px;
+	background-color: rgb(255, 228, 0);
+	height: 40px;
+	line-height: 10px;
+	;
+}

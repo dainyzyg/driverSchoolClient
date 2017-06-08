@@ -1,0 +1,261 @@
+<!doctype html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	<link href="../../css/mui.min.css" rel="stylesheet" />
+	<link rel="stylesheet" type="text/css" href="../../css/icons-extra.css" />
+	<style>
+		body,
+		html {
+			padding: 0;
+			margin: 0;
+			height: 100%;
+			background-color: #fafafa;
+		}
+		
+		.title {
+			background-color: rgb(255, 228, 0);
+			height: 38px;
+			text-align: center;
+			line-height: 38px;
+			position: relative;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			/*color: #a69600;*/
+		}
+		
+		.login-info {
+			background-image: url(../../images/user/myBG.png);
+			background-position: bottom;
+			background-repeat: no-repeat;
+			background-size: 100vw;
+			background-color: rgb(255, 228, 0);
+			height: 60vw;
+			display: flex;
+			flex-direction: column;
+			padding-top: 8vw;
+			align-items: center;
+		}
+		
+		.head-image .mui-icon-person {
+			font-size: 12vw;
+			color: white;
+		}
+		
+		.head-image {
+			height: 15vw;
+			width: 15vw;
+			border: .6vw solid white;
+			border-radius: 50%;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+		
+		.r-l,
+		.state {
+			/*color: #a69600;*/
+			color: white;
+			font-size: 3.5vw;
+			margin-top: 2vw;
+		}
+		
+		.state {
+			font-size: 4vw;
+		}
+		
+		.my-icons {
+			background-color: white;
+			display: flex;
+			padding: 15px 0;
+		}
+		
+		.my-icon-item {
+			flex: 1;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			flex-direction: column;
+		}
+		
+		.my-icon-item:first-child {
+			border-right: 1px solid #bfbfbf;
+		}
+		
+		.my-icon-item img {
+			height: 5vw;
+		}
+		
+		.my-icon-item-title {
+			font-size: 4vw;
+			margin-bottom: 5px;
+		}
+		
+		.celebrity {
+			position: relative;
+			height: 50px;
+			background-color: #ffe400;
+			width: 100%;
+			margin: 10px 0;
+			display: flex;
+			align-items: center;
+			padding-left: 10px;
+			font-size: 13px;
+		}
+		
+		.celebrity .redMan {
+			position: absolute;
+			right: 10px;
+			top: -5px;
+			width: 60px;
+		}
+		
+		.celebrity .slogan {
+			width: calc(100vw - 80px);
+			max-width: 500px;
+		}
+		
+		.list-title,
+		.list-item {
+			position: relative;
+			display: flex;
+			align-items: center;
+			padding-left: 10px;
+			background-color: white;
+		}
+		
+		.list-title {
+			height: 38px;
+			font-size: 13px;
+		}
+		
+		.list-title::before {
+			position: absolute;
+			right: 0;
+			left: 0;
+			height: 1px;
+			content: '';
+			transform: scaleY(.5);
+			background-color: #c8c7cc;
+			top: -1px;
+		}
+		
+		.list-title::after,
+		.list-item::after {
+			position: absolute;
+			right: 0;
+			left: 0;
+			height: 1px;
+			content: '';
+			transform: scaleY(.5);
+			background-color: #c8c7cc;
+			bottom: 0;
+		}
+		
+		.list-item {
+			font-size: 15px;
+			height: 50px;
+			/*border-bottom: 1px solid #c8c7cc;*/
+		}
+		
+		.list-item:active {
+			background-color: #fafafa;
+		}
+		
+		.list-group {
+			margin: 15px 0;
+		}
+		
+		.left-icon {
+			height: 13px;
+		}
+		
+		.setting {
+			position: absolute;
+			height: 18px;
+			right: 10px;
+			top: 10px;
+		}
+	</style>
+	<script src="../../js/vue.js" type="text/javascript" charset="utf-8"></script>
+</head>
+
+<body>
+	<div class="vue-body">
+		<template>
+			<share v-model="showShare" @share="onShare"></share>
+			<setting @logoff="logoff" v-model="showSetting" :user-info="userInfo"></setting>
+			<my-coupon v-model="showMyCoupon" :user-info="userInfo" :to-join="true"></my-coupon>
+			<div class="title">
+				我的页面
+				<img v-show="showSettingIcon" @tap="showSetting=true" class="setting" src="../../images/user/setting.png">
+			</div>
+			<div class="login-info">
+				<div class="head-image" @tap="toggleLogin">
+					<img v-if="userInfo&&userInfo.userimgurl" :src="userInfo.userimgurl" style="height: 12vw;width: 12vw;border-radius: 50%;">
+					<span v-else class="mui-icon mui-icon-person"></span>
+				</div>
+				<div v-if="userInfo==null" class="r-l" @tap="toggleLogin">注册／登陆</div>
+				<div v-else class="r-l" @tap="toggleLogin">{{userInfo.name||userInfo.phone}}</div>
+				<!--<div class="state" @tap="toLogin"> 目前阶段：未购买教练 </div>-->
+			</div>
+			<div class="my-icons">
+				<div @tap="showWallet" class="my-icon-item">
+					<div class="my-icon-item-title">我的钱包</div>
+					<img src="../../images/user/wallet.png">
+				</div>
+				<div @tap="showOrder" class="my-icon-item">
+					<div class="my-icon-item-title">我的订单</div>
+					<img src="../../images/user/order.png">
+				</div>
+			</div>
+			<div class="celebrity" @tap="share">
+				<img class="slogan" src="../../images/user/slogan.png">
+				<img class="redMan" src="../../images/user/redMan.png">
+			</div>
+			<div class="list-group">
+				<ul class="mui-table-view">
+					<li @tap="showMyCouponFunc" class="mui-table-view-cell">
+						<a class="mui-navigate-right"><img class="left-icon" src="../../images/user/wodeyouhuiquan.png"> 我的优惠券</a>
+					</li>
+					<li @tap="myStatus" class="mui-table-view-cell">
+						<a class="mui-navigate-right"><img class="left-icon" src="../../images/user/muqianjieduan.png"> 目前阶段</a>
+					</li>
+					<li @tap="yuyuekaoshi" class="mui-table-view-cell">
+						<a class="mui-navigate-right"><img class="left-icon" src="../../images/user/yuyuekaoshi.png"> 预约考试</a>
+					</li>
+					<li @tap="myfaults" class="mui-table-view-cell">
+						<a class="mui-navigate-right"><img class="left-icon" src="../../images/user/wodecuotiben.png"> 我的错题本</a>
+					</li>
+					<li @tap="lianxikefu" class="mui-table-view-cell">
+						<a class="mui-navigate-right"><img class="left-icon" src="../../images/user/lianxikefu.png"> 联系客服</a>
+					</li>
+					<li @tap="about" class="mui-table-view-cell">
+						<a class="mui-navigate-right"><img class="left-icon" src="../../images/user/guanyulaosiji.png"> 关于老司机</a>
+					</li>
+				</ul>
+			</div>
+			<!--<div class="list-group">
+				<div class="list-title">
+					关于考试
+				</div>
+				<div class="list-item">
+					我的错题本
+				</div>
+				<div class="list-item">
+					预约考试
+				</div>
+			</div>-->
+		</template>
+	</div>
+</body>
+
+</html>
+<script src="../../js/mui.min.js"></script>
+<script type="text/javascript" src="../../js/iscroll-lite.js"></script>
+<!--<script type="text/javascript" src="../../js/iscroll-lite.js"></script>-->
+<script src="../../js/dist/user/index.js"></script>

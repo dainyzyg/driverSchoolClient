@@ -1,0 +1,7 @@
+/.vscode/
+/node_modules/
+/js/dist/
+/jsonData/
+/testDatabase/
+/unpackage/
+/npm-debug.log*

@@ -1,0 +1,522 @@
+<!doctype html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	<link href="../../css/mui.min.css" rel="stylesheet" />
+	<link rel="stylesheet" type="text/css" href="../../css/icons-extra.css" />
+	<style>
+		body,
+		html {
+			padding: 0;
+			margin: 0;
+			height: 100%;
+		}
+		
+		.mui-segmented-control {
+			font-size: 12px;
+		}
+		
+		.title {
+			background-color: rgb(255, 228, 0);
+			height: 38px;
+			text-align: center;
+			line-height: 38px;
+			position: relative;
+		}
+		
+		.title .mui-icon.mui-icon-compose {
+			position: absolute;
+			right: 10px;
+			line-height: 38px;
+			height: 38px;
+		}
+		
+		.mui-table-view.mui-grid-view.mui-grid-9 {
+			background-color: white;
+		}
+		
+		.mui-slider {
+			height: 40vw;
+		}
+		
+		.fix-top {
+			background-color: white;
+			position: fixed;
+			top: 0;
+			left: 0;
+			z-index: 1;
+		}
+		
+		.mui-grid-view.mui-grid-9 .mui-table-view-cell {
+			padding: 0;
+			border: hidden;
+		}
+		
+		.mui-segmented-control.mui-segmented-control-inverted .mui-control-item.mui-active {
+			color: rgb(255, 228, 0);
+			border-bottom-color: rgb(255, 228, 0);
+		}
+		
+		.searchBar {
+			margin-top: 5px;
+			height: 40px;
+			background-color: white;
+			transition: all 0.3s ease-in-out;
+			/* Let's enforce some hardware acceleration */
+			transform: translate3d(0, 0, 0);
+			backface-visibility: hidden;
+		}
+		
+		.filter:after {
+			font-family: Muiicons;
+			content: "\e581";
+		}
+		
+		.filter.expand:after {
+			font-family: Muiicons;
+			content: "\e580";
+		}
+		
+		.content {
+			transform: translate3d(0, 0, 0);
+		}
+		
+		.move-up {
+			transform: translateY(-800px);
+		}
+		
+		#list {
+			margin-top: 1px;
+		}
+		
+		#list img {
+			max-width: 128px;
+			max-height: 80px;
+			width: 100px;
+			height: 65px;
+		}
+		
+		.pull-refresh,
+		.comment-refresh {
+			height: 40px;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+		
+		#slider img {
+			height: 40vw;
+		}
+		
+		.mui-icon.mui-icon-star.mui-icon-star-filled {
+			color: rgb(255, 228, 0);
+			font-size: 14px;
+		}
+		
+		.mui-icon.mui-icon-star {
+			font-size: 14px;
+		}
+		
+		.mui-ellipsis {
+			font-size: 12px;
+		}
+		
+		.mui-h6.mui-ellipsis.distance {
+			color: #000000;
+		}
+		
+		.mui-table-view:after {
+			height: 0;
+		}
+		
+		.commend {
+			background-color: rgb(255, 228, 0);
+			position: absolute;
+			width: 100px;
+			top: 4px;
+			left: -36px;
+			font-size: 12px;
+			text-align: center;
+			transform: rotate(-45deg);
+		}
+		
+		.join {
+			position: absolute;
+			z-index: 9999;
+			right: 20px;
+			bottom: 23px;
+			height: 45px;
+			width: 60px;
+			background-color: rgb(255, 228, 0);
+			text-align: center;
+			font-size: 14px;
+		}
+		
+		.mui-table-view-cell:after {
+			background-color: inherit;
+		}
+		
+		.mui-table-view.mui-grid-view .mui-table-view-cell .mui-media-body {
+			height: 16px;
+		}
+		
+		.equipment {
+			background-image: url(../../images/join/equipment.png);
+		}
+		
+		.service {
+			background-image: url(../../images/join/service.png);
+		}
+		
+		.flow {
+			background-image: url(../../images/join/flow.png);
+		}
+		
+		.joining {
+			background-image: url(../../images/join/join.png);
+		}
+		
+		.learn {
+			background-image: url(../../images/join/learn.png);
+		}
+		
+		.lotNumberSearch {
+			background-image: url(../../images/join/lotNumberSearch.png);
+		}
+		
+		.notes {
+			background-image: url(../../images/join/notes.png);
+		}
+		
+		.peccancySearch {
+			background-image: url(../../images/join/peccancySearch.png);
+		}
+		
+		.icon-size {
+			background-size: cover;
+			width: 10vw;
+			height: 10vw;
+		}
+		
+		.new-posting,
+		.posting-info {
+			position: fixed;
+			top: 0;
+			bottom: 0;
+			width: 100%;
+			background-color: white;
+			z-index: 10;
+		}
+		
+		#wrapper {
+			position: absolute;
+			top: 38px;
+			bottom: 0;
+			width: 100%;
+			overflow: hidden;
+		}
+		
+		.fade-enter-active,
+		.fade-leave-active {
+			transition: transform .3s ease-in;
+		}
+		
+		.fade-enter,
+		.fade-leave-active {
+			transform: translate3d(100vh, 0, 0);
+		}
+		
+		.new-posting-title {
+			background-color: rgb(255, 228, 0);
+			height: 38px;
+			width: 100%;
+			display: flex;
+			justify-content: space-between;
+			align-items: stretch;
+			padding: 0 20px;
+		}
+		
+		.new-posting-title span {
+			line-height: 38px;
+		}
+		
+		textarea.new-posting-textarea {
+			/*min-height: 100px;*/
+			border-radius: 0;
+			border: none;
+			overflow: hidden;
+		}
+		
+		.new-posting-imagearea {
+			display: flex;
+			justify-content: space-between;
+			padding: 10px 4vw;
+		}
+		
+		.new-posting-imagearea .empty {
+			width: 28vw;
+			height: 28vw;
+			background-color: rgb(227, 227, 227);
+			border-radius: 1vw;
+			background-image: url("../../images/learn-driviing/camera.png");
+			background-size: 60%;
+			background-position: center;
+			background-repeat: no-repeat;
+		}
+		
+		.new-posting-imagearea .user-image {
+			width: 28vw;
+			height: 28vw;
+			border-radius: 1vw;
+			background-image: url("../../images/learn-driviing/camera.png");
+			background-size: cover;
+			background-repeat: no-repeat;
+		}
+		
+		.comment-textarea {
+			border-radius: 5px;
+			border: none;
+			flex: 1;
+			height: 36px;
+			margin: 0;
+			padding: 0 5px;
+			line-height: 36px;
+		}
+		
+		.comment-box {
+			height: 88px;
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+		}
+		
+		.comment-div {
+			position: absolute;
+			top: 38px;
+			width: 100%;
+			height: 50px;
+			background-color: #e3e3e3;
+			display: flex;
+			padding: 10px;
+			align-items: center;
+			z-index: 9999999;
+		}
+		
+		.mui-icon-contact {
+			color: #8F8F94;
+			font-size: 50px;
+		}
+	</style>
+	<script src="../../js/vue.js" type="text/javascript" charset="utf-8"></script>
+</head>
+
+<body>
+	<div class="vue-body">
+		<template>
+			<div id="fixTop" class="fix-top">
+			</div>
+			<transition @after-enter="afterEnter" name="fade">
+				<div class="new-posting" v-show="createPostingDisplay">
+					<div>
+						<div class="new-posting-title">
+							<span @tap="cancelPosting">取消</span>
+							<span @tap="posting">发帖</span>
+						</div>
+						<textarea placeholder="请输入" @input="changeTextareaHeight" class="new-posting-textarea"></textarea>
+						<!--<input class="o0" type="file" accept="image/*,video/*" multiple="multiple">-->
+						<div class="new-posting-imagearea">
+							<div class="user-image"></div>
+							<div class="user-image"></div>
+							<div class="empty"></div>
+						</div>
+						<pre> </pre>
+					</div>
+				</div>
+			</transition>
+			<transition @after-enter="afterEnter" name="fade">
+				<div class="posting-info" v-show="postInfoVisible">
+					<div v-show="commentBoxShow" class="comment-box">
+						<div class="new-posting-title">
+							<span @tap="commentBoxShow=false">取消</span>
+							<span @tap="postComment">发送</span>
+						</div>
+						<div class="comment-div">
+							<textarea ref="commentTxt" v-model="commentStr" class="comment-textarea mui-input-clear" placeholder="写点什么..."></textarea>
+						</div>
+					</div>
+					<div class="new-posting-title">
+						<span @tap="postInfoVisible=false">返回</span>
+						<span @tap="comment">评论</span>
+					</div>
+					<div id="wrapper">
+						<div>
+							<div style="background-color:white;">
+								<div style="display: flex;padding: 10px 10px 0 10px;align-items:center;">
+									<img v-if="activePostInfo.photo" :src="domain+activePostInfo.photo" style="height: 50px;width: 50px;border-radius: 50%;">
+									<span v-if="!activePostInfo.photo" class="mui-icon mui-icon-contact"></span>
+									<div style="flex: 1;padding: 0 10px;font-size: 16px;color: #000000;">
+										{{activePostInfo.name}}
+									</div>
+									<div class="mui-h6" style="width:60px;text-align: center;">
+										{{activePostInfo.createTime}}
+									</div>
+								</div>
+								<h5 style="text-align: justify;padding-left: 10px;padding-right: 10px;">{{activePostInfo.content}}</h5>
+								<div style="display: flex;padding-left: 3vw;padding-right:3vw;flex-wrap: wrap;justify-content: space-around;">
+									<div v-for="i in activePostInfo.pictures" :style="{backgroundImage: 'url('+domain+i+')'}" style="margin-bottom: 10px;background-color: silver;background-size: cover;width:29vw;height: 29vw;"></div>
+									<div style="background-color: salmon;width:30vw;height: 0;"></div>
+									<div style="background-color: salmon;width:30vw;height: 0;"></div>
+								</div>
+								<div style="margin:0 20px; height: 1px;background-color: #c8c7cc;"></div>
+								<div style="font-size:12px;color:#8f8f94;padding:0 20px;display:flex;height:30px;width:100%;justify-content:space-between;">
+									<div style="color:rgb(255, 228, 0); display:flex;align-items:center;">
+										<span style="font-size:18px" class="mui-icon-extra mui-icon-extra-new"></span>
+										<span>司机头条</span>
+									</div>
+									<div style="display:flex;align-items:stretch;">
+										<div style="width:60px;display:flex;align-items:center; justify-content:flex-end;">
+											<span style="font-size:16px;line-height:16px;margin-right:3px;" class="mui-icon-extra mui-icon-extra-comment"></span>12
+										</div>
+										<div style="width:60px;display:flex;align-items:center;justify-content:flex-end;" @tap.stop="like(item)">
+											<span style="font-size:16px;line-height:16px;margin-right:3px;" class="mui-icon-extra mui-icon-extra-like"></span>12
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="comments">
+								<div style="height: 5px;background-color: rgb(239, 239, 244);"></div>
+								<h6 style="padding:3px 0 8px 20px;border-bottom:1px solid #c8c7cc;">评论</h6>
+								<template v-for="item in commentList">
+									<div style="display: flex;padding: 10px 10px 0 10px;align-items:center;">
+										<img v-if="item.photo" :src="domain+item.userphoto" style="height: 50px;width: 50px;border-radius: 50%;">
+										<span v-if="!item.photo" class="mui-icon mui-icon-contact"></span>
+										<div style="flex: 1;padding: 0 10px;font-size: 16px;color: #000000;">
+											{{item.username?item.username:'匿名'}}
+										</div>
+										<div class="mui-h6" style="width:60px;text-align: center;">
+											{{item.creattime}}
+										</div>
+									</div>
+									<h5 style="padding-left: 70px;">{{item.commentContent}}</h5>
+									<div style="margin:0 20px; height: 1px;background-color: #c8c7cc;"></div>
+								</template>
+							</div>
+							<div class="comment-refresh">
+								<template v-if="commentLoadable">
+									<span class="mui-spinner "></span>正在加载...
+								</template>
+								<template v-else>
+									没有更多数据
+								</template>
+							</div>
+						</div>
+					</div>
+				</div>
+			</transition>
+			<div class="content">
+				<div class="title">老司机
+					<span class="mui-icon mui-icon-compose" @tap="createPosting"></span>
+				</div>
+				<div id="slider" class="mui-slider">
+					<div class="mui-slider-group mui-slider-loop">
+						<!-- 额外增加的一个节点(循环轮播：第一个节点是最后一张轮播) -->
+						<div class="mui-slider-item mui-slider-item-duplicate">
+							<img src="../../images/yuantiao.jpg">
+						</div>
+						<!-- 第一张 -->
+						<div class="mui-slider-item">
+							<img src="../../images/oldDriver/bg1.png">
+						</div>
+						<!-- 第二张 -->
+						<div class="mui-slider-item">
+							<img src="../../images/muwu.jpg">
+						</div>
+						<!-- 第三张 -->
+						<div class="mui-slider-item">
+							<img src="../../images/cbd.jpg">
+						</div>
+						<!-- 第四张 -->
+						<div class="mui-slider-item">
+							<img src="../../images/yuantiao.jpg">
+						</div>
+						<!-- 额外增加的一个节点(循环轮播：最后一个节点是第一张轮播) -->
+						<div class="mui-slider-item mui-slider-item-duplicate">
+							<img src="../../images/oldDriver/bg1.png">
+						</div>
+					</div>
+					<div class="mui-slider-indicator">
+						<div class="mui-indicator mui-active"></div>
+						<div class="mui-indicator"></div>
+						<div class="mui-indicator"></div>
+						<div class="mui-indicator"></div>
+					</div>
+				</div>
+				<div id="searchBar" class="searchBar">
+					<div id="segmentedControl" style="height: 100%;display: flex;flex-direction: column;">
+						<div class="mui-segmented-control mui-segmented-control-inverted mui-segmented-control-negative ">
+							<a class="mui-control-item" :class="{'mui-active':item.active}" v-for="item in sections" @tap="sectionTap(item.id)">
+									{{item.name}}
+								</a>
+						</div>
+					</div>
+				</div>
+				<div style="border-top:1px solid #c8c7cc;min-height: calc(100vh - 40px);" :key="activeSection">
+					<template v-for="item in activePosts">
+						<div style="background-color:white;" @tap="showPostInfo(item)">
+							<div style="display: flex;padding: 10px 10px 0 10px;align-items:center;">
+								<img v-if="item.photo" :src="item.photo" style="height: 50px;width: 50px;border-radius: 50%;">
+								<span v-if="!item.photo" class="mui-icon mui-icon-contact"></span>
+								<div style="flex: 1;padding: 0 10px;font-size: 16px;color: #000000;">
+									{{item.name}}
+								</div>
+								<div class="mui-h6" style="width:60px;text-align: center;">
+									{{item.createTime}}
+								</div>
+							</div>
+							<h5 style="text-align: justify;padding-left: 10px;padding-right: 10px;">{{item.content}}</h5>
+							<div style="display: flex;padding-left: 3vw;padding-right:3vw;flex-wrap: wrap;justify-content: space-around;">
+								<div v-for="i in item.pictures" :style="{backgroundImage: 'url('+domain+i+')'}" style="margin-bottom: 10px;background-color: silver;background-size: cover;width:29vw;height: 29vw;"></div>
+								<div style="background-color: salmon;width:30vw;height: 0;"></div>
+								<div style="background-color: salmon;width:30vw;height: 0;"></div>
+							</div>
+							<div style="margin:0 20px; height: 1px;background-color: #c8c7cc;"></div>
+							<div style="font-size:12px;color:#8f8f94;padding:0 20px;display:flex;height:30px;width:100%;border-bottom:1px solid #c8c7cc;justify-content:space-between;">
+								<div style="color:rgb(255, 228, 0); display:flex;align-items:center;">
+									<template v-if="item.headline">
+										<span style="font-size:18px" class="mui-icon-extra mui-icon-extra-new"></span>
+										<span>司机头条</span>
+									</template>
+								</div>
+								<div style="display:flex;align-items:stretch;">
+									<div style="width:60px;display:flex;align-items:center; justify-content:flex-end;">
+										<span style="font-size:16px;line-height:16px;margin-right:3px;" class="mui-icon-extra mui-icon-extra-comment"></span>12
+									</div>
+									<div style="width:60px;display:flex;align-items:center;justify-content:flex-end;" @tap.stop="like(item)">
+										<span style="font-size:16px;line-height:16px;margin-right:3px;" class="mui-icon-extra mui-icon-extra-like"></span>12
+									</div>
+								</div>
+							</div>
+						</div>
+					</template>
+					<div class="pull-refresh ">
+						<template v-if="loadable[activeSection]">
+							<span class="mui-spinner "></span>正在加载...
+						</template>
+						<template v-else>
+							没有更多数据
+						</template>
+					</div>
+				</div>
+			</div>
+		</template>
+	</div>
+</body>
+
+</html>
+<script src="../../js/mui.min.js"></script>
+<script type="text/javascript" src="../../js/iscroll-lite.js"></script>
+<script src="../../js/dist/oldDriver/index.js"></script>

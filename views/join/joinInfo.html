@@ -1,0 +1,103 @@
+<!doctype html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>驾校详情</title>
+	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	<link href="../../css/mui.min.css" rel="stylesheet" />
+	<link rel="stylesheet" href="../../css/join/joinInfo.css" />
+</head>
+
+<body>
+	<div class="immersed-status-bar"></div>
+	<div class="vue-body">
+		<my-coupon v-model="showMyCoupon" top="20px" :user-info="userInfo" @changecoupon="changeCoupon"></my-coupon>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">报名信息</h1>
+		</header>
+		<div class="content">
+			<div>
+				<template>
+					<div class="mui-table-view-cell">
+						<h5 style='color: #000000;'>{{classdetail.classname}}</h5>
+						<p class="mui-h6 mui-ellipsis">{{classdetail.classintro}}</p>
+						<p class="mui-h6 mui-ellipsis "><span style="font-size: 20px;color:rgb(255, 228, 0);padding-right: 10px;">¥{{classdetail.realprice}}</span>市场价 ¥{{classdetail.marketprice}}
+							<span style="font-size:10px; padding-left:5px;" @tap="setDetailShow">费用明细
+						<span style="font-size:10px;" class="mui-icon" :class="{'mui-icon-arrowdown':!detailShow,'mui-icon-arrowup':detailShow}"></span>
+							</span>
+						</p>
+						<div class='join'>
+							<div style="background-color: white;margin: 2px;height: 20px;font-size: 10px;">¥{{classdetail.firstpayment}}</div>
+							预约金
+						</div>
+					</div>
+					<div v-if="detailShow">
+						<div class="single-line"></div>
+						<div v-for="price in classdetail.pricedetail" class="space-between">
+							<h6>{{price.detailname}}</h6>
+							<h6>{{price.value}}</h6>
+						</div>
+						<div class="single-line"></div>
+						<h6 style="padding-left: 20px;">备注：</h6>
+						<div v-for="remark in classdetail.remarks" class="space-between">
+							<h6>{{remark.remarkname}}</h6>
+							<h6>{{remark.value}}</h6>
+						</div>
+						<div class="long-single-line"></div>
+					</div>
+					<div style="display: none;">
+						<h5 style="padding: 5px 20px;">付款方式</h5>
+						<div class="single-line"></div>
+						<div class="mui-input-row mui-radio mui-left">
+							<label><span style="background-color: red;color: white;">定</span> 预付定金 （首付预约金，到校付全尾款，性价比高）</label>
+							<input name="radio1" type="radio" v-model="params.paymenttype" value="prepay">
+						</div>
+						<div class="single-line"></div>
+						<div class="mui-input-row mui-radio mui-left">
+							<label><span style="background-color: green;color: white;">分</span> 分期学车 （首付预约金，按课时付尾款，学车无压力）</label>
+							<input name="radio1" type="radio" v-model="params.paymenttype" value="instalment">
+						</div>
+					</div>
+					<!--<div class="long-single-line"></div>-->
+					<div class="coupon" @tap="selectCoupon">
+						<div style="flex: 1;">优惠券</div>
+						<div style="color:#8f8f94;flex:0 0 100px;">{{coupondes}}</div>
+						<span style="color:#8f8f94;flex:0 0 24px;" class="mui-icon mui-icon-forward"></span>
+					</div>
+					<div class="long-single-line"></div>
+					<div>
+						<h5 style="padding: 5px 20px;">学员信息</h5>
+						<div class="single-line"></div>
+						<div class="mui-input-row">
+							<label>姓名</label>
+							<input type="text" v-model="params.username" class="mui-input-clear" placeholder="请输入">
+						</div>
+						<!--<div class="single-line"></div>
+						<div class="mui-input-row">
+							<label>联系方式</label>
+							<input type="tel" v-model="params.userphone" class="mui-input-clear" placeholder="请输入">
+						</div>
+						<div class="single-line"></div>
+						<div class="mui-input-row">
+							<label>身份证</label>
+							<input type="text" v-model="params.useridentitycard" class="mui-input-clear" placeholder="请输入">
+						</div>-->
+					</div>
+					<div class="long-single-line"></div>
+					<div class="mui-content-padded">
+						<button @tap="confirm" type="button" class="mui-btn mui-btn-block confirm">确认报名</button>
+					</div>
+					<div style="height: 20px;width: 100%;"></div>
+				</template>
+			</div>
+		</div>
+	</div>
+	<script src="../../js/vue.js" type="text/javascript"></script>
+	<script src="../../js/mui.min.js"></script>
+	<script type="text/javascript" src="../../js/iscroll-lite.js"></script>
+	<script type="text/javascript" src="../../js/dist/join/joinInfo.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,85 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="../../css/learn-driving/preorder.css" />
+		<script src="../../js/vue.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+
+	<body>
+		<div class="immersed-status-bar"></div>
+		<div class="vue-body">
+			<preorder-record v-model="recordShow" :bookinginfo="bookinginfo"></preorder-record>
+			<div class="title">
+				<span @tap="back" class="mui-icon mui-icon-back"></span>
+				<div class="title-title">预约课时</div>
+			</div>
+			<div class="content">
+				<template>
+					<div class="coach-info">
+						<img v-if="coachInfo.imgurl==true" :src="domain+coachInfo.imgurl[0]" style="height: 60px;width: 60px;border-radius: 50%;">
+						<span v-if="coachInfo.imgurl==false" class="mui-icon mui-icon-contact"></span>
+						<div style="flex: 1;padding: 10px;">
+							<p>
+								<span style="font-size: 16px;color: #000000;">{{coachInfo.coachname}}</span> {{coachInfo.coachtype}} 教龄{{coachInfo.coachyear}}年
+							</p>
+							<p>
+								<span v-for="i in 5" class="mui-icon mui-icon-star mui-icon-star-filled"></span> 累计培训{{coachInfo.studentnum}}人
+							</p>
+							<h6>{{coachInfo.coachwords}}</h6>
+						</div>
+					</div>
+					<div class="single-line"></div>
+					<div class="change-coach">如需更换教练，请联系学车顾问</div>
+					<div class="subject-type">
+						科目二
+					</div>
+					<div id="sliderSegmentedControl">
+						<template>
+							<div class="mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
+								<a class="mui-control-item" v-bind:class="{ 'mui-active': item.isActive }" v-on:tap="tabTap(item,index)" v-for="item,index in dateArray">
+									<div style="height: 25px;line-height:25px;">{{item.day}}</div>
+									<div style="height: 20px;line-height:20px;">{{item.mmdd}}</div>
+								</a>
+							</div>
+						</template>
+					</div>
+					<div id="slider">
+						<template>
+							<slider @change="pageChange" :count="count" v-model="pageIndex">
+								<div class="page" v-for="x in 6">
+									<div class="lesson" v-for="n in 2">
+										<div class="lesson-item" @tap="selectItem(lessonsList[x-1].lessons[(n-1)*2+m-1],lessonsListExt[x-1])" :class="[{ selected:lessonsList[x-1].lessons[(n-1)*2+m-1].selected }, lessonsList[x-1].lessons[(n-1)*2+m-1].state]" v-for="m in 2">
+											<div class="lesson-item-select">
+												<div class="lesson-item-select-icon"></div>
+											</div>
+											<div class="lesson-item-info">
+												<p>{{lessonsList[x-1].lessons[(n-1)*2+m-1].time}}</p>
+												<p>{{lessonsList[x-1].lessons[(n-1)*2+m-1].description}}</p>
+											</div>
+											<div class="lesson-item-type"></div>
+										</div>
+									</div>
+									<div class="selectInfo">{{lessonsListExt[x-1].dateStr}}，您还可以预约{{lessonsListExt[x-1].count}}节课</div>
+								</div>
+							</slider>
+							<!--<div class="preorder-info">已选{{selectedCount}}节课，共¥{{price}}</div>-->
+							<div class="preorder-info">已选{{selectedCount}}节课</div>
+						</template>
+					</div>
+					<div class="footer">
+						<button type="button" id="pay" @tap="confirm" class="mui-btn mui-btn-block confirm">确认预约</button>
+					</div>
+				</template>
+			</div>
+		</div>
+		<script src="../../js/mui.min.js"></script>
+		<script type="text/javascript" src="../../js/iscroll-lite.js"></script>
+		<script src="../../js/dist/learn-driving/preorder.js" type="text/javascript" charset="utf-8"></script>
+	</body>
+
+</html>

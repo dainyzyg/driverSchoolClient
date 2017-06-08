@@ -1,0 +1,129 @@
+body,
+html {
+	padding: 0;
+	margin: 0;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	background-color: white;
+}
+
+.placeholder {
+	flex: 1;
+}
+
+.bg {
+	flex: 1;
+	background-image: url(../../images/learn-driviing/subBG.png);
+	background-position: bottom;
+	background-repeat: no-repeat;
+	background-size: 100vw;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	padding-right: 30px;
+	align-items: flex-end;
+	background-color: rgb(176, 240, 255);
+}
+
+.bg-block {
+	width: 45vw;
+	height: calc(45vw/56*75);
+	display: flex;
+	flex-direction: column;
+	background-image: url(../../images/learn-driviing/bg.png);
+	background-size: 100% 100%;
+}
+
+.func {
+	height: 200px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-around;
+	align-items: stretch;
+}
+
+.test h4,
+.practice h4 {
+	color: rgb(255, 228, 0);
+}
+
+.test p,
+.practice p {
+	color: black;
+}
+
+.test,
+.practice {
+	flex: 1;
+	display: flex;
+}
+
+.test div:first-child,
+.practice div:first-child {
+	width: 110px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: flex-start;
+	padding-left: 20px;
+}
+
+.test div:last-child,
+.practice div:last-child {
+	display: flex;
+	flex: 1;
+	justify-content: center;
+	align-items: center;
+}
+
+.func .row {
+	display: flex;
+	flex: 1;
+	justify-content: space-around;
+	align-items: stretch;
+}
+
+.mui-icon-forward {
+	background-color: rgb(212, 212, 215);
+	color: white;
+	height: 15px;
+	width: 15px;
+	padding: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 14px;
+	border-radius: 50%;
+}
+
+
+/*.row div {
+	height: 50px;
+	width: 50px;
+	background-size: cover;
+	background-image: url(../../images/learn-driviing/collect.png);
+}*/
+
+.row div {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.row div span {
+	padding-top: 10px;
+	font-size: 12px;
+}
+
+.row div:not(:last-child) {
+	flex: 1;
+	border-right: 0.5px solid silver;
+}
+
+.row:first-child div {
+	border-bottom: 0.5px solid silver;
+}
