@@ -231,7 +231,7 @@
 						<a style="padding: 10px 0 10px 10px;" class="mui-navigate-right">
 								{{schoolInfo.schoolname}}
 								<p>
-									<span class="mui-icon mui-icon-star mui-icon-star-filled" v-for="i in parseInt(schoolInfo.rate)"></span> {{schoolInfo.entollcount}}人已报名
+									<span class="mui-icon mui-icon-star mui-icon-star-filled" v-for="i in parseInt(schoolInfo.rate)"></span> {{schoolInfo.linkman.contractcount||schoolInfo.entollcount}}人已报名
 								</p>
 							</a>
 					</li>

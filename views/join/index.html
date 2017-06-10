@@ -322,7 +322,7 @@
 									<div class="mui-media-body">
 										{{item.schoolname}}
 										<p class='mui-ellipsis'>
-											<span class="mui-icon mui-icon-star mui-icon-star-filled" v-for="i in parseInt(item.rate)"></span> {{item.entollcount}}人已报名
+											<span class="mui-icon mui-icon-star mui-icon-star-filled" v-for="i in parseInt(item.rate)"></span> {{item.linkman.contractcount||item.entollcount}}人已报名
 										</p>
 										<p class="mui-h6 mui-ellipsis distance">{{index==0?'最近训练场':''}} {{item.dis?(parseFloat(item.dis)/1000).toFixed(2)+'km':''}} {{item.area}}</p>
 									</div>
