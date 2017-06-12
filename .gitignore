@@ -5,3 +5,4 @@
 /testDatabase/res/
 /unpackage/
 /npm-debug.log*
+.DS_Store
